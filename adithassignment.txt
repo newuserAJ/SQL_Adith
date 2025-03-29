@@ -1,0 +1,45 @@
+﻿MongoDB
+Adith Jose
+22BAI10055
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class AuthSystem {
+    private static final Map<String, String> userDatabase = new HashMap<>();
+
+    static {
+        // Simulated database: username -> password
+        userDatabase.put("admin", "password123");
+        userDatabase.put("user1", "securePass");
+    }
+
+    public static boolean authenticateUser(String username, String password) {
+        return userDatabase.containsKey(username) && userDatabase.get(username).equals(password);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter Username: ");
+        String username = scanner.nextLine();
+        
+        System.out.print("Enter Password: ");
+        String password = scanner.nextLine();
+        
+        if (authenticateUser(username, password)) {
+            System.out.println("Authentication successful. You are now logged in!");
+            performWork(username);
+        } else {
+            System.out.println("Invalid credentials. Access denied.");
+        }
+        
+        scanner.close();
+    }
+    
+    public static void performWork(String username) {
+        System.out.println("Welcome, " + username + "! You can now perform tasks.");
+        // Add actual work functionality here
+    }
+}
